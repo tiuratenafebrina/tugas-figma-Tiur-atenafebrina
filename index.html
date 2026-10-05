@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Little Seed Plants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--g:#1D5B45;--g2:#2E7D5B;--soft:#E3F0E8;--bg:#F4F7F3;--ink:#18231D;--mut:#66756C;--line:#DDE5DF;--red:#A6402B;--redbg:#F8E4DE;--sh:0 6px 24px rgba(29,91,69,.10)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 500px at 90% -10%,#dcefe3 0,transparent 60%),var(--bg);font:15px/1.5 "Plus Jakarta Sans",system-ui,"Segoe UI",sans-serif;color:var(--ink)}
+#app{min-height:100vh;padding-bottom:76px}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:12px 16px}
+.lg{flex:1;font-weight:800;font-size:18px;color:var(--g)}.lg small{display:block;font-weight:500;font-size:10px;color:var(--mut)}
+.tabs{display:none;gap:6px;margin:0 auto}
+.tabs button{border:0;background:none;padding:10px 18px;border-radius:24px;font-size:15px;font-weight:500;color:var(--mut);transition:.15s}
+.tabs button:hover{background:var(--soft);color:var(--g)}.tabs button.on{background:var(--g);color:#fff;font-weight:700}
+.tg{width:44px;height:24px;border-radius:14px;border:0;background:#cdd6d0;position:relative;padding:0;flex:none;transition:.2s}
+.tg::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tg.on{background:var(--g)}.tg.on::after{transform:translateX(20px)}
+.pt{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--mut)}.pt span{display:none}
+.ct{background:#fff;border:1px solid var(--line);border-radius:12px;padding:7px 13px;font-size:14px;transition:.15s}.ct:hover{border-color:var(--g)}
+main{padding:16px;max-width:1360px;margin:0 auto}
+main.nar{max-width:820px}main.mid{max-width:1000px}
+h1{font-size:26px;line-height:1.2;margin:4px 0 6px;font-weight:800;letter-spacing:-.5px}
+h2{font-size:20px;margin:34px 0 14px;font-weight:800;letter-spacing:-.3px}
+.mut{color:var(--mut)}.sm{font-size:12.5px}.c{text-align:center}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.chip{border:1px solid var(--line);background:#fff;border-radius:20px;padding:8px 18px;font-size:13.5px;font-weight:500;transition:.15s}
+.chip:hover{border-color:var(--g)}.chip.on{background:var(--g);border-color:var(--g);color:#fff}
+.box{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}.grow{flex:1}
+.tag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;background:var(--soft);color:var(--g);display:inline-block}
+.tag.w{background:var(--redbg);color:var(--red)}
+.pr{color:var(--g)}s{color:var(--mut);font-size:12px}
+.btn{width:100%;border:0;background:var(--g);color:#fff;border-radius:14px;padding:14px;font-weight:700;margin-top:10px;transition:.15s}
+.btn:hover{background:var(--g2);transform:translateY(-1px)}
+.btn.o{background:#fff;color:var(--g);border:1.5px solid var(--g)}.btn.o:hover{background:var(--soft)}
+.mini{border:0;background:var(--g);color:#fff;border-radius:10px;padding:8px 14px;font-size:13px;font-weight:600;transition:.15s}.mini:hover{background:var(--g2)}
+.mini.o{background:#fff;color:var(--g);border:1px solid var(--line)}
+.link{border:0;background:none;color:var(--g);font-weight:700;padding:6px 0;font-size:14px}
+/* hero */
+.hero2{background:linear-gradient(135deg,#1D5B45 0%,#2E7D5B 60%,#4C9E78 100%);color:#fff;border-radius:26px;padding:28px 22px;margin:6px 0 18px;display:flex;align-items:center;gap:20px;overflow:hidden;position:relative;box-shadow:var(--sh)}
+.hero2 .hl{flex:1;position:relative;z-index:1}
+.hero2 .tag{background:rgba(255,255,255,.18);color:#fff}
+.hero2 h1{font-size:30px;margin:12px 0 10px}
+.hero2 p{margin:0 0 18px;color:#d6ece0;max-width:520px}
+.hero2 .hr{font-size:70px;letter-spacing:6px;opacity:.95;display:none;text-shadow:0 10px 30px rgba(0,0,0,.2)}
+.hero2::after{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.07)}
+.hb{display:flex;gap:10px;flex-wrap:wrap}
+.hb button{border:0;background:#fff;color:var(--g);border-radius:14px;padding:12px 22px;font-weight:700;transition:.15s}
+.hb button:hover{transform:translateY(-2px)}
+.hb button.o{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.feat{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:6px}
+.feat div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:flex;gap:14px;align-items:center}
+.feat span{font-size:28px;background:var(--soft);border-radius:14px;width:52px;height:52px;display:grid;place-items:center;flex:none}
+.feat b{display:block}.feat small{color:var(--mut)}
+.promo{background:var(--soft);border-radius:14px;padding:11px 16px;font-size:13.5px;margin-bottom:12px}
+/* grids & cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.g3{display:grid;grid-template-columns:1fr;gap:14px}
+.bc{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;transition:.2s}
+.bc:hover{transform:translateY(-4px);box-shadow:var(--sh)}
+.bc .th{margin-bottom:14px}
+.th{font-size:42px;background:linear-gradient(135deg,#E9F4ED,#CFE6D8);border-radius:16px;padding:18px;letter-spacing:6px;text-align:center}
+.pc{background:#fff;border:1px solid var(--line);border-radius:20px;padding:10px;cursor:pointer;position:relative;transition:.2s}
+.pc:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:#bcd8c8}
+.pc b{display:block;padding:0 4px;font-size:15px}
+.pc .row{padding:4px 4px 2px}
+.pc.x{border:1.5px dashed var(--red);background:repeating-linear-gradient(45deg,#fff,#fff 6px,#faf1ee 6px,#faf1ee 12px)}
+.tile{background:linear-gradient(135deg,#E9F4ED,#CFE6D8);border-radius:14px;height:150px;display:grid;place-items:center;font-size:60px;overflow:hidden;margin-bottom:10px}
+.tile img{width:100%;height:100%;object-fit:cover}
+.tile.big{height:300px;font-size:120px;border-radius:24px}
+.tile.s2{width:56px;height:56px;font-size:28px;margin:0;flex:none;border-radius:14px}
+.ab{position:absolute;left:18px;top:18px;z-index:1}
+.hrt{position:absolute;right:18px;top:18px;z-index:1;border:0;background:#fff;border-radius:50%;width:32px;height:32px;color:var(--red);font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,.15);transition:.15s}.hrt:hover{transform:scale(1.12)}
+.vd{background:var(--soft);border-radius:16px;padding:14px 16px;margin:14px 0}
+.vd small{color:var(--g);font-weight:800;letter-spacing:.6px}.vd p{margin:4px 0 0;font-weight:700;font-size:16px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tri div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 4px;text-align:center;font-size:22px}
+.tri small{display:block;font-size:11px;color:var(--mut)}.tri b{font-size:12.5px}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin-bottom:10px}
+summary{font-weight:700;cursor:pointer}details p{margin:8px 0 0;color:var(--mut)}
+.rate{display:flex;gap:16px;align-items:center}
+.big4{font-size:42px;font-weight:800}.big4 small{font-size:13px;color:var(--mut);font-weight:400}
+.bars{flex:1}.br{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut)}
+.br i{flex:1;height:6px;background:#e3e9e5;border-radius:3px;overflow:hidden}.br u{display:block;height:100%;background:#E2A93B}
+.st{color:#E2A93B}
+.sr{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 14px;background:#fff;margin-top:8px;outline:none;transition:.15s}
+.sr:focus{border-color:var(--g);box-shadow:0 0 0 3px var(--soft)}
+select{border:1px solid var(--line);background:#fff;border-radius:16px;padding:6px 12px;font-size:13px}
+select.sr{border-radius:12px;font-size:14.5px}
+.dk{background:var(--g);color:#fff;border-radius:18px;padding:16px;margin-bottom:14px}.dk .mut{color:#bfe0cf}
+.bar2{position:sticky;bottom:78px;background:var(--g);color:#fff;border-radius:16px;padding:12px 16px;margin-top:14px;box-shadow:var(--sh)}
+.bar2 button{border:0;background:#fff;color:var(--g);border-radius:10px;padding:8px 16px;font-weight:700}
+.warn{background:var(--redbg);color:var(--red);border-radius:14px;padding:12px 14px;margin-bottom:14px;font-size:13px}
+.warn button{margin-top:6px}
+.qty{display:flex;align-items:center;gap:10px}
+.qty button{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:16px;padding:0}
+.pg{height:9px;background:#e3e9e5;border-radius:5px;overflow:hidden;margin:8px 0}.pg u{display:block;height:100%;background:linear-gradient(90deg,var(--g),#4C9E78)}
+.opt{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}.opt span{margin-left:auto;color:var(--mut)}
+.sumr{display:flex;justify-content:space-between;padding:4px 0}
+.sumr.t{font-weight:800;border-top:1px solid var(--line);margin-top:8px;padding-top:10px;font-size:17px}
+.star{border:0;background:none;font-size:32px;color:#cfd6d1;padding:0 2px}.star.on{color:#E2A93B}
+.bt{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;z-index:5}
+.bt button{flex:1;border:0;background:none;padding:10px 0;font-size:11px;color:var(--mut)}
+.bt button span{display:block;font-size:19px}.bt button.on{color:var(--g);font-weight:700}
+#toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9}
+#toast.on{opacity:1}
+.lay,.cols,.dt,.two{display:block}
+.side label.l{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin-top:12px}
+.empty{background:#fff;border:1.5px dashed var(--line);border-radius:22px;padding:40px 20px;text-align:center}
+.empty .em{font-size:54px}.empty .btn{max-width:240px;margin:14px auto 0}
+.ph{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+footer{margin-top:50px;border-top:1px solid var(--line);padding:22px 16px;text-align:center;color:var(--mut);font-size:13px}
+
+@media(min-width:800px){
+ #app{padding-bottom:0}
+ .bt{display:none}.tabs{display:flex}
+ .lg{flex:none}.pt span{display:inline}
+ header{padding:14px 48px}
+ .lg{font-size:21px}
+ main{padding:34px 48px}
+ h1{font-size:34px}
+ .hero2{padding:50px 52px;border-radius:32px}
+ .hero2 h1{font-size:44px}
+ .hero2 p{font-size:17px}
+ .hero2 .hr{display:block;font-size:96px}
+ .feat{grid-template-columns:repeat(3,1fr)}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+ .g3{grid-template-columns:repeat(3,1fr);gap:22px}
+ .tile{height:220px;font-size:84px}
+ .tile.big{height:520px;font-size:170px}
+ .lay{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:start}
+ .side{position:sticky;top:90px;padding:22px}
+ .cols{display:grid;grid-template-columns:1.5fr 1fr;gap:30px;align-items:start}
+ .cols .stick{position:sticky;top:90px}
+ .dt{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+ .dt .stick{position:sticky;top:90px}
+ .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+ .bar2{bottom:20px}
+ #toast{bottom:30px}
+}
+@media(min-width:1200px){.grid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+ <div class="lg">🌱 Little Seed Plants<small id="sub"></small></div>
+ <div class="tabs">
+  <button data-tab="paket">🎁 Paket</button>
+  <button data-tab="cocok">✨ Cocok</button>
+  <button data-tab="ulasan">💬 Ulasan</button>
+  <button data-tab="pet">🐾 Pet-Safe</button>
+ </div>
+ <div class="pt"><span>Pet-Safe</span><button class="tg" id="tg" aria-label="Pet-Safe Mode"></button></div>
+ <button class="ct" data-ov="fav" aria-label="Favorit">♡ <b id="fc">0</b></button>
+ <button class="ct" data-ov="cart" aria-label="Keranjang">🛒 <b id="ct">0</b></button>
+</header>
+<main id="m"></main>
+<footer>🌱 Little Seed Plants · Prototype tugas Perancangan Interaksi</footer>
+<nav class="bt">
+ <button data-tab="paket"><span>🎁</span>Paket</button>
+ <button data-tab="cocok"><span>✨</span>Cocok</button>
+ <button data-tab="ulasan"><span>💬</span>Ulasan</button>
+ <button data-tab="pet"><span>🐾</span>Pet-Safe</button>
+</nav>
+</div>
+<div id="toast"></div>
+<script>
+const E={"Peperomia":"🌱","Pothos":"🍃","Spider Plant":"🌿","Calathea":"🌿","Boston Fern":"🌿","Haworthia":"🌵","Sansevieria":"🪴","ZZ Plant":"🪴","Mini Peperomia":"🌱"};
+const P=[
+{n:"Peperomia Watermelon",p:45000,l:"r",lb:"Teduh",w:"1x Seminggu",s:"Kecil",c:"m",pet:1,e:"🌱",img:""},
+{n:"Spider Plant Variegata",p:35000,l:"s",lb:"Sedang",w:"1x Seminggu",s:"Kecil",c:"m",pet:1,e:"🌿",img:""},
+{n:"Boston Fern Pakis",p:50000,l:"r",lb:"Teduh",w:"Jaga lembap",s:"Sedang",c:"d",pet:1,e:"🌿",img:""},
+{n:"Calathea Peacock",p:75000,l:"r",lb:"Teduh",w:"Saat tanah kering",s:"Sedang",c:"d",pet:1,e:"🌿",img:""},
+{n:"Haworthia Zebra",p:30000,l:"t",lb:"Terang",w:"2 minggu sekali",s:"Kecil",c:"m",pet:1,e:"🌵",img:""},
+{n:"Areca Palm Mini",p:55000,l:"t",lb:"Terang",w:"2x Seminggu",s:"Besar",c:"d",pet:1,e:"🌴",img:""},
+{n:"Pothos / Sirih Gading",p:35000,l:"r",lb:"Teduh",w:"Saat tanah kering",s:"Sedang",c:"m",pet:0,e:"🍃",img:""},
+{n:"Monstera Deliciosa",p:120000,l:"s",lb:"Sedang",w:"1x Seminggu",s:"Besar",c:"d",pet:0,e:"🍃",img:""},
+{n:"Bromeliad Merah",p:65000,l:"t",lb:"Terang",w:"1x Seminggu",s:"Sedang",c:"m",pet:1,e:"🌺",img:""},
+{n:"Parlor Palm",p:70000,l:"s",lb:"Sedang",w:"1x Seminggu",s:"Sedang",c:"m",pet:1,e:"🌴",img:""},
+{n:"Fittonia Merah",p:25000,l:"r",lb:"Teduh",w:"Jaga lembap",s:"Kecil",c:"d",pet:1,e:"🌿",img:""},
+{n:"Aloe Vera",p:40000,l:"t",lb:"Terang",w:"2 minggu sekali",s:"Sedang",c:"m",pet:0,e:"🪴",img:""},
+{n:"Echeveria Sukulen",p:28000,l:"t",lb:"Terang",w:"2 minggu sekali",s:"Kecil",c:"m",pet:1,e:"🌵",img:""},
+{n:"Sansevieria Laurentii",p:60000,l:"r",lb:"Teduh",w:"2 minggu sekali",s:"Besar",c:"m",pet:0,e:"🪴",img:""}];
+const B=[
+{n:"Paket Pemula",tag:"Pemula",lab:"Hemat 10%",off:"-10%",it:["Peperomia","Pothos","Spider Plant"],p:108000,o:120000,pet:0},
+{n:"Paket Pet-Safe",tag:"Pet-Safe",lab:"Aman untuk hewan",off:"-10%",it:["Calathea","Boston Fern","Haworthia"],p:103500,o:115000,pet:1},
+{n:"Paket Hemat Apartemen",tag:"Hemat",lab:"Gratis pupuk cair",off:"Hemat",it:["Sansevieria","ZZ Plant","Mini Peperomia"],p:95000,o:0,pet:0}];
+const RV=[
+{n:"Dian Paramita",v:1,l:"Jakarta Barat · 2 hari lalu",t:"Apartemen Studio",s:5,x:"Tanaman hijau segar di sudut meja kerja kamar kos yang jarang kena matahari langsung. Daunnya tebal dan tahan banting."},
+{n:"Rian Setiawan",v:1,l:"Tangerang · 5 hari lalu",t:"Punya Kucing",s:5,x:"Kucing saya sempat mengendus dan menjilat daunnya, tidak ada iritasi sama sekali. Tenang merawatnya di ruang keluarga."},
+{n:"Maya Kusuma",v:1,l:"Bandung · 1 minggu lalu",t:"Pemula",s:5,x:"Cocok buat yang jadwalnya padat. Cukup disiram sekali seminggu dan pertumbuhannya tetap subur."},
+{n:"Bima Aditya",v:1,l:"Bekasi · 2 minggu lalu",t:"Minim Cahaya",s:4,x:"Tetap segar di kamar yang jarang kena matahari."}];
+const RC={"Minim Cahaya":42,"Apartemen Studio":28,"Punya Kucing":15,"Pemula":35};
+const LV={r:"ruanganmu minim cahaya",s:"ruanganmu punya cahaya cukup",t:"ruanganmu mendapat banyak matahari"};
+const CC={m:"sering lupa menyiram",d:"bisa merawat rutin tiap minggu"};
+const FREE=150000;
+const S={t:"paket",sub:{paket:"home",cocok:"list",ulasan:"sum",pet:""},ov:"",pet:0,id:0,bf:"Semua",rv:"Minim Cahaya",q:"",l:"",z:"",o:"",cart:{},fav:[],vc:"",my:[],
+co:{nama:"",hp:"",alamat:"",kirim:"reg",bayar:"Transfer Bank",aman:0},rf:{nama:"",s:5,t:"Minim Cahaya",x:""},ord:null};
+const $=s=>document.querySelector(s);
+const rp=n=>"Rp "+n.toLocaleString("id-ID");
+const cap=s=>s[0].toUpperCase()+s.slice(1);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tile=p=>p.img?`<img src="${p.img}" alt="${p.n}">`:p.e;
+const cnt=()=>Object.values(S.cart).reduce((a,i)=>a+i.q,0);
+const sub=()=>Object.values(S.cart).reduce((a,i)=>a+i.p*i.q,0);
+const disc=()=>{const s=sub();return S.vc=="SEED10"?Math.round(s*.1):(S.vc=="BARU"&&s>=50000?10000:0)};
+const ship=()=>{const s=sub();if(!s)return 0;return S.co.kirim=="exp"?25000:(s>=FREE?0:15000)};
+const aman=()=>S.co.aman?5000:0;
+const total=()=>sub()-disc()+ship()+aman();
+
+function load(){try{const d=JSON.parse(localStorage.getItem("lsp2")||"{}");
+if(d.cart)S.cart=d.cart;if(d.fav)S.fav=d.fav;if(d.vc)S.vc=d.vc;if(d.pet)S.pet=d.pet;
+(d.my||[]).forEach(r=>{S.my.push(r);RV.unshift(r);RC[r.t]++})}catch(e){}}
+function save(){try{localStorage.setItem("lsp2",JSON.stringify({cart:S.cart,fav:S.fav,vc:S.vc,pet:S.pet,my:S.my}))}catch(e){}}
+
+function addItem(k){
+const i=+k.slice(1),it=k[0]=="p"?{n:P[i].n,p:P[i].p,e:P[i].e,pet:P[i].pet}:{n:B[i].n,p:B[i].p,e:B[i].it.map(x=>E[x]).join(""),pet:B[i].pet};
+if(!S.cart[k])S.cart[k]={...it,q:0};S.cart[k].q++}
+
+const card=i=>{const p=P[i];return `<div class="pc ${S.t=="pet"&&!S.ov&&!p.pet?"x":""}" data-open="${i}"><span class="tag ab ${p.pet?"":"w"}">${p.pet?"🐾 Aman":"⚠ Beracun"}</span><button class="hrt" data-fav="${i}" aria-label="Favorit">${S.fav.includes(i)?"♥":"♡"}</button><div class="tile">${tile(p)}</div><b>${p.n}</b><div class="row"><span class="pr sm"><b style="padding:0">${rp(p.p)}</b></span><button class="mini" data-add="p${i}">+ Keranjang</button></div></div>`};
+const chipsB=()=>`<div class="chips">${["Semua","Pemula","Pet-Safe","Hemat"].map(t=>`<button class="chip ${S.bf==t?"on":""}" data-bf="${t}">${t}</button>`).join("")}</div>`;
+const chipsR=()=>`<div class="chips">${Object.keys(RC).map(k=>`<button class="chip ${S.rv==k?"on":""}" data-rv="${k}">${k} (${RC[k]})</button>`).join("")}</div>`;
+const rvc=r=>`<div class="box"><div class="row"><b>${esc(r.n)}${r.v?" ✔":""}</b><span class="st">${"★".repeat(r.s)}${"☆".repeat(5-r.s)}</span></div><span class="mut sm">${r.l}</span> <span class="tag">${r.t}</span>${r.v?"":` <span class="tag w">Belum diverifikasi</span>`}<p>${esc(r.x)}</p></div>`;
+const bset=()=>B.map((b,k)=>({...b,k})).filter(b=>(!S.pet||b.pet)&&(S.bf=="Semua"||b.tag==S.bf));
+const bcard=b=>`<div class="bc"><div class="th">${b.it.map(x=>E[x]).join("")}</div><div class="row"><b style="font-size:17px">${b.n}</b><span class="tag">${b.lab}</span></div><p class="mut sm" style="margin:6px 0 12px">${b.it.join(" · ")}</p><div class="row"><div><b class="pr" style="font-size:18px">${rp(b.p)}</b> ${b.o?`<s>${rp(b.o)}</s>`:""}</div><button class="mini" data-add="b${b.k}">+ Tambah</button></div></div>`;
+
+const home=()=>{const bs=bset(),fv=[0,1,2,3,8,9,10,12].filter(i=>!S.pet||P[i].pet);
+return `<section class="hero2"><div class="hl"><span class="tag">🌱 Toko tanaman hias online</span><h1>Pilih tanaman yang cocok untuk rumahmu</h1><p>Saring berdasarkan cahaya, ukuran, dan keamanan hewan peliharaan tanpa ribet. Cocok untuk pemula sampai pecinta tanaman.</p><div class="hb"><button data-sub="cocok:list">✨ Lihat Katalog</button><button class="o" data-sub="paket:bun">🎁 Lihat Paket</button></div></div><div class="hr">🪴🌿</div></section>
+<div class="promo">🚚 Gratis ongkir belanja min. Rp150.000 · pakai kode <b>SEED10</b> untuk diskon 10%</div>
+<div class="feat"><div><span>🐾</span><p style="margin:0"><b>Pet-Safe Mode</b><small>Sembunyikan tanaman beracun untuk hewan</small></p></div><div><span>☀️</span><p style="margin:0"><b>Sesuai Cahaya Ruangan</b><small>Rekomendasi sesuai kondisi rumahmu</small></p></div><div><span>💬</span><p style="margin:0"><b>Ulasan Terverifikasi</b><small>Dari pembeli dengan kondisi serupa</small></p></div></div>
+<div class="row"><h2>📦 Paket Tematik Siap Beli</h2><span class="tag">Hemat hingga 10%</span></div>${chipsB()}
+${bs.length?`<div class="g3">${bs.map(bcard).join("")}</div>`:`<p class="mut">Tidak ada paket yang cocok.</p>`}
+<button class="link" data-sub="paket:bun">Lihat semua paket ›</button>
+<h2>🌿 Tanaman Favorit Minggu Ini</h2><div class="grid">${fv.map(card).join("")}</div>
+<button class="btn o" style="max-width:280px;margin:24px auto 0;display:block" data-sub="cocok:list">Lihat semua tanaman ›</button>`};
+
+const bun=()=>{const bs=bset();
+return `<button class="link" data-sub="paket:home">← Beranda</button><h1>Paket Tematik</h1><p class="mut">Kombinasi tanaman siap beli dengan harga lebih hemat.</p>${chipsB()}
+<div class="g3">${bs.map(bcard).join("")||`<p class="mut">Tidak ada paket yang cocok.</p>`}</div>
+<div class="bar2 row"><span>${cnt()} item · ${rp(sub())}</span><button data-ov="cart">Keranjang →</button></div>`};
+
+const list=()=>{let ids=P.map((_,i)=>i).filter(i=>(!S.pet||P[i].pet)&&(!S.q||P[i].n.toLowerCase().includes(S.q))&&(!S.l||P[i].l==S.l)&&(!S.z||P[i].s==S.z));
+if(S.o=="a")ids.sort((a,b)=>P[a].p-P[b].p);if(S.o=="d")ids.sort((a,b)=>P[b].p-P[a].p);
+const op=(a,v)=>a.map(([k,t])=>`<option value="${k}" ${v==k?"selected":""}>${t}</option>`).join("");
+const act=S.q||S.l||S.z||S.o||S.pet;
+return `<div class="ph"><div><h1>✨ Katalog Rekomendasi</h1><p class="mut" style="margin:0">Temukan tanaman yang pas untuk ruanganmu.</p></div></div>
+<div class="lay"><aside class="side box"><b style="font-size:16px">Pencarian & Filter</b>
+<input id="q" class="sr" placeholder="🔍 Cari tanaman..." value="${esc(S.q)}">
+<label class="l">☀️ Cahaya</label><select class="sr" data-f="l">${op([["","Semua"],["r","Teduh"],["s","Sedang"],["t","Terang"]],S.l)}</select>
+<label class="l">📏 Ukuran</label><select class="sr" data-f="z">${op([["","Semua"],["Kecil","Kecil"],["Sedang","Sedang"],["Besar","Besar"]],S.z)}</select>
+<label class="l">↕ Urutkan</label><select class="sr" data-f="o">${op([["","Default"],["a","Harga terendah"],["d","Harga tertinggi"]],S.o)}</select>
+<label class="opt" style="border:0;margin-top:8px"><input type="checkbox" data-tg ${S.pet?"checked":""}> 🐾 Pet-Safe saja</label>
+${act?`<button class="btn o" data-reset>↺ Reset filter</button>`:""}</aside>
+<section><p class="mut sm" style="margin-top:0">Menampilkan <b>${ids.length}</b> tanaman</p>
+${ids.length?`<div class="grid">${ids.map(card).join("")}</div>`:`<div class="empty"><div class="em">🔍</div><b style="font-size:17px">Tidak ada tanaman yang cocok</b><p class="mut">Coba ubah kombinasi filter, atau kembalikan ke semula.</p><button class="btn" data-reset>↺ Reset filter</button></div>`}</section></div>`};
+
+const det=()=>{const p=P[S.id],rel=P.map((_,i)=>i).filter(i=>i!=S.id&&P[i].l==p.l&&(!S.pet||P[i].pet)).slice(0,4);
+return `<button class="link" data-sub="cocok:list">← Katalog</button>
+<div class="dt"><div class="stick"><div class="tile big">${tile(p)}</div></div><div>
+<div class="row"><span class="tag ${p.pet?"":"w"}">${p.pet?"🐾 Aman untuk kucing & anjing":"⚠ Beracun untuk kucing & anjing"}</span><button class="mini o" data-fav="${S.id}">${S.fav.includes(S.id)?"♥ Favorit":"♡ Simpan"}</button></div>
+<h1 style="font-size:36px;margin-top:12px">${p.n}</h1><b class="pr" style="font-size:24px">${rp(p.p)}</b>
+<div class="vd"><small>COCOK JIKA KAMU...</small><p>“${cap(LV[p.l])} dan kamu ${CC[p.c]}.”</p></div>
+<div class="tri"><div>☀️<small>Cahaya</small><b>${p.lb}</b></div><div>💧<small>Air</small><b>${p.w}</b></div><div>📏<small>Ukuran</small><b>${p.s}</b></div></div>
+<button class="btn o" data-add="p${S.id}">+ Tambah ke Keranjang</button>
+<button class="btn" data-now="p${S.id}">Beli Sekarang (${rp(p.p)})</button>
+<h2>Detail & Panduan Perawatan</h2>
+<details open><summary>Info Lengkap (Spesifikasi & Pot)</summary><p>Tingkat perawatan: ${p.c=="m"?"mudah":"sedang"}. Penyiraman: ${p.w}. Ukuran: ${p.s}. Dijual dalam pot kecil siap tanam.</p></details>
+<details><summary>Tips & Panduan Perawatan</summary><p>Letakkan di tempat dengan cahaya ${p.lb.toLowerCase()} dan putar pot sesekali agar tumbuh merata. Siram saat permukaan tanah mulai kering.</p></details>
+<details><summary>Keselamatan Hewan (Pet-Safe)</summary><p>${p.pet?"Aman untuk kucing dan anjing.":"Beracun jika dimakan. Jauhkan dari kucing dan anjing."}</p></details></div></div>
+${rel.length?`<h2>Tanaman Serupa</h2><div class="grid">${rel.map(card).join("")}</div>`:""}`};
+
+const sum=()=>{const r=RV.find(x=>x.t==S.rv)||RV[0];
+return `<h1>💬 Ulasan Terverifikasi</h1><p class="mut">Baca pengalaman pembeli dengan kondisi rumah yang mirip denganmu.</p>
+<div class="two"><div class="box row" style="justify-content:flex-start"><div class="tile s2">${tile(P[0])}</div><div><b>${P[0].n}</b><br><span class="mut sm">${rp(P[0].p)}</span></div></div>
+<div class="box rate"><div class="big4">4.8<small>/5.0</small></div><div class="bars">${[[5,118],[4,14],[3,4],[2,1],[1,1]].map(([s,n])=>`<div class="br"><span>${s}</span><i><u style="width:${n/138*100}%"></u></i><span>${n}</span></div>`).join("")}</div></div></div>
+<p class="mut sm">Berdasarkan 138 ulasan</p><h2 style="margin-top:20px">📌 Ulasan berdasarkan kondisimu:</h2>${chipsR()}${rvc(r)}
+<button class="btn o" data-sub="ulasan:feed">Lihat Semua Ulasan Kondisi (${RC[S.rv]})</button>`};
+
+const feed=()=>{const l=RV.filter(r=>r.t==S.rv);
+return `<button class="link" data-sub="ulasan:sum">← Ulasan Terverifikasi</button><p class="mut sm">Filter aktif:</p>${chipsR()}
+${l.length?l.map(rvc).join(""):`<p class="mut">Belum ada ulasan untuk kondisi ini.</p>`}
+<button class="btn" data-ov="tulis">✍ Tulis Pengalaman Kondisimu</button>`};
+
+const petp=()=>{const l=P.map((_,i)=>i).filter(i=>!S.pet||P[i].pet);
+return `<h1>🐾 Pet-Safe Mode</h1><p class="mut">Lindungi kucing dan anjingmu dari tanaman beracun.</p>`+(S.pet
+?`<div class="dk"><div class="row"><div><b>🐾 Pet-Safe Mode AKTIF</b><br><span class="mut sm">Filter proteksi anabul menyala</span></div><button class="tg on" data-tg></button></div></div><div class="box sm">🛡 <b>Proteksi Diterapkan:</b> tanaman beracun untuk kucing dan anjing disembunyikan. Menampilkan ${l.length} tanaman aman.</div><div class="grid">${l.map(card).join("")}</div>`
+:`<div class="box row"><div><b>🐾 Pet-Safe Mode</b><br><span class="mut sm">Filter proteksi anabul mati</span></div><button class="tg" data-tg></button></div><div class="box sm">⚠ <b>Mode Normal:</b> semua jenis tanaman ditampilkan, termasuk yang beracun bagi hewan.</div><div class="grid">${l.map(card).join("")}</div>`)};
+
+const cartV=()=>{const ks=Object.keys(S.cart);
+if(!ks.length)return `<button class="link" data-ov="">← Lanjut belanja</button><div class="empty"><div class="em">🛒</div><b style="font-size:17px">Keranjangmu masih kosong</b><p class="mut">Mulai dari paket tematik atau tanaman favoritmu.</p><button class="btn" data-sub="paket:bun">Lihat Paket</button></div>`;
+const s=sub(),bad=ks.filter(k=>S.pet&&!S.cart[k].pet);
+return `<button class="link" data-ov="">← Lanjut belanja</button><h1>Keranjang Belanja (${cnt()})</h1>
+${bad.length?`<div class="warn">⚠ Pet-Safe Mode aktif, tapi ada ${bad.length} item yang beracun untuk hewan di keranjangmu.<br><button class="mini" data-rmbad>Hapus item beracun</button></div>`:""}
+<div class="cols"><div>
+<div class="box"><b class="sm">${s>=FREE?"🎉 Kamu dapat gratis ongkir!":`Belanja ${rp(FREE-s)} lagi untuk gratis ongkir`}</b><div class="pg"><u style="width:${Math.min(100,s/FREE*100)}%"></u></div></div>
+${ks.map(k=>{const i=S.cart[k];return `<div class="box row"><div class="tile s2">${i.e}</div><div class="grow"><b>${i.n}</b>${i.pet?"":` <span class="tag w">Beracun</span>`}<br><span class="pr">${rp(i.p)}</span> <button class="link sm" data-q="${k}:-99">Hapus</button></div><div class="qty"><button data-q="${k}:-1">−</button><b>${i.q}</b><button data-q="${k}:1">+</button></div></div>`}).join("")}
+</div><div class="stick">
+<div class="box"><div class="row"><input id="vc" class="sr" style="margin:0" placeholder="Kode voucher (coba SEED10)" value="${esc(S.vc)}"><button class="mini" data-vc>Pakai</button></div>${S.vc&&disc()?`<p class="sm pr">Voucher ${esc(S.vc)} terpasang, hemat ${rp(disc())}</p>`:""}</div>
+<div class="box"><div class="sumr"><span>Subtotal</span><span>${rp(s)}</span></div><div class="sumr"><span>Diskon</span><span>- ${rp(disc())}</span></div><div class="sumr t"><span>Total sementara</span><span>${rp(s-disc())}</span></div><p class="mut sm">Ongkir dihitung di langkah berikutnya.</p></div>
+<button class="btn" data-ov="co">Lanjut ke Checkout</button></div></div>`};
+
+const coV=()=>{if(!cnt())return cartV();const s=sub(),c=S.co;
+return `<button class="link" data-ov="cart">← Keranjang</button><h1>Checkout</h1><div class="cols"><div>
+<div class="box"><b>Alamat pengiriman</b><input class="sr" data-co="nama" placeholder="Nama penerima" value="${esc(c.nama)}"><input class="sr" type="tel" data-co="hp" placeholder="No. HP" value="${esc(c.hp)}"><textarea class="sr" data-co="alamat" rows="3" placeholder="Alamat lengkap">${esc(c.alamat)}</textarea></div>
+<div class="box"><b>Pengiriman</b>
+<label class="opt"><input type="radio" name="k" data-co="kirim" value="reg" ${c.kirim=="reg"?"checked":""}> Reguler (2-4 hari)<span>${s>=FREE?"Gratis":rp(15000)}</span></label>
+<label class="opt"><input type="radio" name="k" data-co="kirim" value="exp" ${c.kirim=="exp"?"checked":""}> Express (1-2 hari)<span>${rp(25000)}</span></label>
+<label class="opt"><input type="checkbox" data-co="aman" ${c.aman?"checked":""}> Kemasan ekstra aman untuk tanaman<span>+${rp(5000)}</span></label></div>
+<div class="box"><b>Pembayaran</b><select class="sr" data-co="bayar">${["Transfer Bank","E-Wallet","Bayar di Tempat (COD)"].map(x=>`<option ${c.bayar==x?"selected":""}>${x}</option>`).join("")}</select></div>
+</div><div class="stick"><div class="box"><b>Ringkasan</b><div class="sumr"><span>Subtotal (${cnt()} item)</span><span>${rp(s)}</span></div><div class="sumr"><span>Diskon</span><span>- ${rp(disc())}</span></div><div class="sumr"><span>Ongkir</span><span>${ship()?rp(ship()):"Gratis"}</span></div>${aman()?`<div class="sumr"><span>Kemasan aman</span><span>${rp(aman())}</span></div>`:""}<div class="sumr t"><span>Total</span><span>${rp(total())}</span></div></div>
+<button class="btn" data-pay>Bayar Sekarang (${rp(total())})</button></div></div>`};
+
+const okV=()=>{const o=S.ord;if(!o)return home();
+return `<div class="box c"><div style="font-size:56px">✅</div><h1>Pesanan Diterima!</h1><p class="mut">Terima kasih, ${esc(o.nama)}.<br>Nomor pesanan: <b>${o.no}</b></p></div>
+<div class="box">${o.items.map(i=>`<div class="sumr"><span>${i.q} × ${i.n}</span><span>${rp(i.p*i.q)}</span></div>`).join("")}<div class="sumr t"><span>Total dibayar</span><span>${rp(o.tot)}</span></div></div>
+<p class="sm mut c">Ini prototype, tidak ada pembayaran sungguhan.</p><button class="btn" data-home>Kembali ke Beranda</button>`};
+
+const favV=()=>`<button class="link" data-ov="">← Kembali</button><h1>♥ Favorit (${S.fav.length})</h1>${S.fav.length?`<div class="grid">${S.fav.map(card).join("")}</div>`:`<div class="empty"><div class="em">♡</div><b style="font-size:17px">Belum ada favorit</b><p class="mut">Tekan ♡ pada tanaman untuk menyimpannya di sini.</p></div>`}`;
+
+const tulisV=()=>`<button class="link" data-ov="">← Batal</button><h1>Tulis Pengalamanmu</h1>
+<div class="box"><input class="sr" style="margin-top:0" data-rf="nama" placeholder="Namamu" value="${esc(S.rf.nama)}"><p class="sm mut" style="margin:10px 0 0">Penilaian</p><div>${[1,2,3,4,5].map(n=>`<button class="star ${n<=S.rf.s?"on":""}" data-rate="${n}" aria-label="${n} bintang">★</button>`).join("")}</div>
+<p class="sm mut" style="margin:6px 0 0">Kondisi rumahmu</p><select class="sr" data-rf="t">${Object.keys(RC).map(k=>`<option ${S.rf.t==k?"selected":""}>${k}</option>`).join("")}</select>
+<textarea class="sr" data-rf="x" rows="4" placeholder="Ceritakan pengalamanmu merawat tanaman ini...">${esc(S.rf.x)}</textarea></div>
+<button class="btn" data-send>Kirim Ulasan</button>`;
+
+const V={"paket:home":home,"paket:bun":bun,"cocok:list":list,"cocok:det":det,"ulasan:sum":sum,"ulasan:feed":feed,"pet:":petp,cart:cartV,co:coV,ok:okV,fav:favV,tulis:tulisV};
+const T={"paket:home":"Home / Paket List","paket:bun":"Detail Paket Tematik","cocok:list":"Katalog Rekomendasi","cocok:det":"Detail Tanaman","ulasan:sum":"Ringkasan Ulasan","ulasan:feed":"Feed Ulasan Terverifikasi",cart:"Keranjang",co:"Checkout",ok:"Pesanan Selesai",fav:"Favorit",tulis:"Tulis Ulasan"};
+function R(){const k=S.ov||S.t+":"+S.sub[S.t];
+$("#m").innerHTML=V[k]();
+$("#m").className=["ok","tulis"].includes(k)?"nar":(k.startsWith("ulasan")?"mid":"");
+$("#sub").textContent=T[k]||(S.pet?"Pet-Safe Mode (ON)":"Mode Normal (OFF)");
+$("#tg").classList.toggle("on",!!S.pet);
+$("#ct").textContent=cnt();$("#fc").textContent=S.fav.length;
+document.querySelectorAll("[data-tab]").forEach(b=>b.classList.toggle("on",!S.ov&&b.dataset.tab==S.t));
+save()}
+let tt;function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>e.classList.remove("on"),1800)}
+const DEF={paket:"home",cocok:"list",ulasan:"sum",pet:""};
+const up=()=>scrollTo(0,0);
+
+document.addEventListener("click",e=>{const t=e.target;let x;
+if(x=t.closest("[data-fav]")){const i=+x.dataset.fav,j=S.fav.indexOf(i);j<0?S.fav.push(i):S.fav.splice(j,1);R();toast(j<0?"Disimpan ke favorit":"Dihapus dari favorit");return}
+if(x=t.closest("[data-add]")){addItem(x.dataset.add);R();toast("Ditambahkan ke keranjang");return}
+if(x=t.closest("[data-now]")){addItem(x.dataset.now);S.ov="co";R();up();return}
+if(t.closest("[data-reset]")){S.q="";S.l="";S.z="";S.o="";S.pet=0;R();toast("Filter direset");return}
+if(t.closest("#tg,[data-tg]")){S.pet=S.pet?0:1;R();toast(S.pet?"Pet-Safe Mode aktif":"Pet-Safe Mode mati");return}
+if(x=t.closest("[data-q]")){const[k,d]=x.dataset.q.split(":");if(S.cart[k]){S.cart[k].q+=+d;if(S.cart[k].q<=0)delete S.cart[k]}R();return}
+if(t.closest("[data-rmbad]")){Object.keys(S.cart).forEach(k=>{if(!S.cart[k].pet)delete S.cart[k]});R();toast("Item beracun dihapus");return}
+if(t.closest("[data-vc]")){const v=($("#vc").value||"").trim().toUpperCase();
+if(v=="SEED10"||v=="BARU"){if(v=="BARU"&&sub()<50000){toast("Voucher BARU minimal belanja Rp50.000");return}S.vc=v;R();toast("Voucher terpasang")}
+else{S.vc="";R();toast("Kode voucher tidak valid")}return}
+if(t.closest("[data-pay]")){if(!S.co.nama.trim()||!S.co.alamat.trim()){toast("Lengkapi nama dan alamat dulu");return}
+S.ord={no:"LSP-"+(10000+Math.floor(Math.random()*90000)),nama:S.co.nama.trim(),tot:total(),items:Object.values(S.cart).map(i=>({n:i.n,q:i.q,p:i.p}))};
+S.cart={};S.vc="";S.ov="ok";R();up();return}
+if(t.closest("[data-home]")){S.ov="";S.t="paket";S.sub.paket="home";R();up();return}
+if(x=t.closest("[data-rate]")){S.rf.s=+x.dataset.rate;R();return}
+if(t.closest("[data-send]")){if(S.rf.x.trim().length<10){toast("Tulis minimal 10 karakter");return}
+const r={n:S.rf.nama.trim()||"Kamu",v:0,l:"Baru saja",t:S.rf.t,s:S.rf.s,x:S.rf.x.trim()};
+RV.unshift(r);S.my.push(r);RC[r.t]++;S.rv=r.t;S.rf={nama:"",s:5,t:"Minim Cahaya",x:""};
+S.ov="";S.t="ulasan";S.sub.ulasan="feed";R();up();toast("Ulasan terkirim, terima kasih!");return}
+if(x=t.closest("[data-open]")){S.id=+x.dataset.open;S.ov="";S.t="cocok";S.sub.cocok="det";R();up()}
+else if(x=t.closest("[data-ov]")){S.ov=x.dataset.ov;R();up()}
+else if(x=t.closest("[data-tab]")){S.ov="";S.t=x.dataset.tab;S.sub[S.t]=DEF[S.t];R();up()}
+else if(x=t.closest("[data-sub]")){const[a,b]=x.dataset.sub.split(":");S.ov="";S.t=a;S.sub[a]=b;R();up()}
+else if(x=t.closest("[data-bf]")){S.bf=x.dataset.bf;R()}
+else if(x=t.closest("[data-rv]")){S.rv=x.dataset.rv;R()}});
+
+document.addEventListener("input",e=>{const el=e.target;
+if(el.id=="q"){S.q=el.value.trim().toLowerCase();R();const q=$("#q");q.focus();q.setSelectionRange(q.value.length,q.value.length);return}
+if(el.dataset.co&&(el.tagName=="TEXTAREA"||el.type=="text"||el.type=="tel"))S.co[el.dataset.co]=el.value;
+if(el.dataset.rf)S.rf[el.dataset.rf]=el.value});
+document.addEventListener("change",e=>{const el=e.target;
+if(el.dataset.f){S[el.dataset.f]=el.value;R()}
+else if(el.dataset.rf)S.rf[el.dataset.rf]=el.value;
+else if(el.dataset.co&&!(el.tagName=="TEXTAREA"||el.type=="text"||el.type=="tel")){S.co[el.dataset.co]=el.type=="checkbox"?(el.checked?1:0):el.value;R()}});
+load();R();
+</script>
+</body>
+</html>
